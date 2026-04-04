@@ -1,0 +1,28 @@
+# --- Security ---
+.env
+auth.json
+secrets/
+
+# --- Python ---
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+
+# --- Playwright & Reports ---
+test-results/
+playwright-report/
+blob-report/
+results.xml
+htmlcov/
+*.log
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS ---
+.DS_Store
+Thumbs.db
