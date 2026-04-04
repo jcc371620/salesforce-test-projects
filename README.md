@@ -63,3 +63,8 @@ Python 会通过 simple-salesforce 静默连接到你的 Playground。
 
 3. BDD 报告：
 如果一切顺利，你会看到绿色的 3 passed
+
+## Problems
+1. vpn问题/网络/SSL 握手拦截 问题。这个 SSL_ERROR_SYSCALL 通常是因为你的本地 Git 客户端在通过 HTTPS 协议连接 GitHub 时，被系统代理、防火墙或不稳定的 VPN 节点强行中断了连接。
+- git config --global --unset http.proxy
+- git config --global --unset https.proxy
