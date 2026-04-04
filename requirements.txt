@@ -1,0 +1,15 @@
+#安装的依赖
+
+# Core
+python-dotenv==1.0.0
+requests==2.31.0
+simple-salesforce==1.12.0
+
+# Testing
+pytest==7.4.3
+pytest-xdist==3.5.0
+pytest-timeout==2.2.0
+pytest-html==4.1.1
+
+# Optional: 用于更好的断言和报告
+pytest-assume==2.4.0

@@ -36,4 +36,28 @@ BDD 部分：使用自然语言描述测试步骤。
 
 ## 安装依赖
 - pip install pytest pytest-bdd playwright requests python-dotenv simple-salesforce
+- pip install pytest-playwright
 - playwright install chromium
+
+## 安装插件
+- Cucumber (Gherkin) Full Support
+
+## 运行方法
+- 使用 pytest 运行，-s 参数是为了看到 print 打印出来的“成功”信息
+- pytest -s test_connection.py
+
+## 逻辑解析
+1. API 阶段 (无感秒杀)：
+Python 会通过 simple-salesforce 静默连接到你的 Playground。
+它会先执行一个 SOQL (SQL) 查询：SELECT Id FROM Contact WHERE LastName = 'Gemini_Test_User'。
+如果找到了旧数据，它会直接调用 REST API 的 DELETE 方法删掉。
+然后调用 POST 方法创建一个崭新的联系人。
+终端会打印：API 创建成功, ID: 003xxxxxx。
+
+2. UI 阶段 (Playwright 接管)：
+浏览器窗口自动弹出，自动输入你在 .env 里的用户名和密码。
+登录成功后，它会直接跳转到 Contact 列表页。
+验证：Playwright 会在页面 DOM 树中寻找刚才 API 创建的那个名字。
+
+3. BDD 报告：
+如果一切顺利，你会看到绿色的 3 passed
