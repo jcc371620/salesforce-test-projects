@@ -129,6 +129,9 @@
     - 严格：必须遵循复杂的 XML 格式。
     - 笨重：哪怕只传输一个数字，也要套上好几层 XML 标签。
     - 强类型：对数据类型的定义非常死板，不容易出错但开发慢。
+- Salesforce:
+    - 并没有“彻底禁用” SOAP API，但在 2023 年至 2025 年间，Salesforce 在新出的环境（如你正在用的 Agentforce 或某些 Trial Org）中，默认关闭了 SOAP 登录权限。
+    - 原因：SOAP 登录安全性较低（直接传账号密码），且不支持现代的多因素认证（MFA）。Salesforce 强制大家转向基于 REST 的 OAuth 2.0。
 
 ## Problems
 1. vpn问题/网络/SSL 握手拦截 问题。这个 SSL_ERROR_SYSCALL 通常是因为你的本地 Git 客户端在通过 HTTPS 协议连接 GitHub 时，被系统代理、防火墙或不稳定的 VPN 节点强行中断了连接。
