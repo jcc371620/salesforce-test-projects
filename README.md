@@ -132,6 +132,12 @@
 - Salesforce:
     - 并没有“彻底禁用” SOAP API，但在 2023 年至 2025 年间，Salesforce 在新出的环境（如你正在用的 Agentforce 或某些 Trial Org）中，默认关闭了 SOAP 登录权限。
     - 原因：SOAP 登录安全性较低（直接传账号密码），且不支持现代的多因素认证（MFA）。Salesforce 强制大家转向基于 REST 的 OAuth 2.0。
+5. 关于REST API
+- REST (Representational State Transfer) 是一种设计风格。如果把 SOAP 比作厚重的“纸质挂号信”，那么 REST 就是“发微信”。
+- 特点：
+    使用 HTTP 动词：它直接利用浏览器最常用的动作：GET（查）、POST（增）、PUT（改）、DELETE（删）。
+    数据格式轻量：通常使用 JSON（像 Python 字典一样），而不是笨重的 XML。
+    无状态：服务器不记你的“登录状态”，每次请求都必须带上你的“通行证”。
 
 ## Problems
 1. vpn问题/网络/SSL 握手拦截 问题。这个 SSL_ERROR_SYSCALL 通常是因为你的本地 Git 客户端在通过 HTTPS 协议连接 GitHub 时，被系统代理、防火墙或不稳定的 VPN 节点强行中断了连接。
