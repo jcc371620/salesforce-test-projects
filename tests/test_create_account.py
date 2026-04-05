@@ -1,10 +1,16 @@
-from test_connection import SalesforceClient
-
-# 这个脚本是一个简单的 Salesforce API 操作示例，展示了如何使用 simple-salesforce 库来创建、查询、更新和删除 Account 对象。它首先连接到 Salesforce，然后执行一系列操作来验证连接和 API 功能是否正常工作。这个示例可以帮助你快速上手 Salesforce API，并且可以作为后续更复杂操作的基础模板。
+# 1.查询原始数据
+# 2.创建五条数据
+# 3.修改第一条数据
+# 4.删除第三条数据
+# 5.再次查询数据，验证前面操作的结果
+# 一个简单的 Salesforce API 操作示例，展示了如何使用 simple-salesforce 库来创建、查询、更新和删除 Account 对象。它首先连接到 Salesforce，然后执行一系列操作来验证连接和 API 功能是否正常工作。
 # sf.Account.create()	POST    创建一个新的 Account 记录。 
 # sf.Account.update()	PATCH   更新一个已有的 Account 记录。
 # sf.Account.delete()	DELETE  删除一个已有的 Account 记录。
 # sf.query()	        GET     执行一个 SOQL 查询，获取数据。
+from tests.test_connection import SalesforceClient
+
+
 def run_simple_demo():
     # 0. 初始化连接
     client = SalesforceClient()

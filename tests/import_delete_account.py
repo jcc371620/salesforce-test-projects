@@ -1,11 +1,11 @@
-# 1.读取目前系统中所有account数量并print。
-# 2.导入csv表格
-# 3.再次读取accout数量并print
+# 1. 读取目前系统中所有account数量并print
+# 2. 导入csv表格
+# 3. 再次读取accout数量并print
 # 4. 删除刚才导入的数据
 # 5. 再次读取account的数量并print
 
 import pandas as pd
-from test_connection import SalesforceClient
+from tests.test_connection import SalesforceClient
 
 def run_csv_integration_demo():
     # 0. 初始化连接

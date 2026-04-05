@@ -1,11 +1,13 @@
 # 为复杂网络环境（如使用 VPN、代理或受限的企业内网）以及高安全限制的 Salesforce 实例（如 Agentforce 试用版）设计的自动化连接工具。
+# 这个工具的核心是一个 SalesforceClient 类，它封装了连接 Salesforce 的逻辑，并提供了一个方法来查询组织信息。它使用 OAuth2 密码流来获取访问令牌，绕过了传统的 SOAP 登录限制。同时，它创建了一个不受系统代理干扰的干净 Session，解决了在某些网络环境下可能遇到的 SSL 错误和连接错误。
+
 import os
 import requests
 import urllib3
 from dotenv import load_dotenv
 from simple_salesforce import Salesforce
 
-# 屏蔽自签名证书警告
+# 屏蔽自签名证书警告,因为在某些网络环境下，Salesforce 的 SSL 证书可能会被认为不完全可信，导致 Python 抛出 InsecureRequestWarning。通过禁用这个警告，我们可以避免在连接过程中看到这些警告信息。
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # 第一步：环境清理与初始化 (__init__)

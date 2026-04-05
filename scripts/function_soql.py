@@ -1,5 +1,5 @@
 import pandas as pd
-from test_connection import SalesforceClient
+from tests.test_connection import SalesforceClient
 
 def run_retail_audit_suite():
     client = SalesforceClient()
