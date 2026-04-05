@@ -106,6 +106,10 @@ class SalesforceClient: # 连接 Salesforce 的客户端类，封装了连接逻
         print(f"🛠️  组织类型: {org['OrganizationType']}")
 
 # --- 调用示例 ---
+# 在脚本直接运行时，创建 SalesforceClient 实例，连接 Salesforce，并查询组织信息。这个示例展示了如何使用 SalesforceClient 类来连接 Salesforce 并执行一个简单的查询，以验证连接是否成功。
+# 你可以直接运行这个脚本来测试连接，确保你的 .env 文件里已经正确设置了 Salesforce 的连接参数（用户名、密码、Token、Client ID、Client Secret 和登录 URL）。如果一切配置正确，你应该能看到组织的名称和类型被打印出来。
+# 注意：在实际使用中，你可能需要根据你的 Salesforce 实例的 API 版本调整查询 URL 中的版本号（如 v60.0）。同时，确保你的 Connected App 已经正确配置，并且用户有权限访问相关数据。
+# 仅用于快速验证环境是否配置正确，后续可以直接使用 sf_instance 进行各种 Salesforce API 操作（如创建、更新、删除记录等）。
 if __name__ == "__main__":
     client = SalesforceClient()
     sf_instance = client.connect()

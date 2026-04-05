@@ -17,6 +17,8 @@ blob-report/
 results.xml
 htmlcov/
 *.log
+import_csv_data/
+export_csv_data/
 
 # --- IDE ---
 .vscode/

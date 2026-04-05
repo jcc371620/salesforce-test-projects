@@ -1,7 +1,5 @@
 # salsforce-test-projects
-- Prompt Engineer: 从零搭建一个简单项目，要求结合salesforce+Python + Pytest + Request + SQL + Playwright + pytest-bdd。一步一步教我，最简单的case。我用的trailhead playground
-
-搭建一个结合 Salesforce API 与 UI 自动化 的端到端（E2E）测试框架是一个非常实用的练习。我们将使用 Playwright 处理 UI，Requests 处理 API，并用 pytest-bdd 编写业务逻辑。
+- 初衷：结合Salesforce + SOQL + REST API + Requests + Python + PLaywright + Pytest + BDD，进行自动化测试。包括数据创建、数据修改、数据验证、UI测试、API测试、Salesforce配置测试。
 
 ## 项目核心思路
 - 第一步：连通salesforce -- Done
@@ -46,6 +44,8 @@
 - pip install pytest pytest-bdd playwright requests python-dotenv simple-salesforce
 - pip install pytest-playwright
 - playwright install chromium
+- pip install pandas
+- pip install pandas openpyxl
 
 ## 安装插件
 - Cucumber (Gherkin) Full Support
