@@ -138,6 +138,39 @@
     使用 HTTP 动词：它直接利用浏览器最常用的动作：GET（查）、POST（增）、PUT（改）、DELETE（删）。
     数据格式轻量：通常使用 JSON（像 Python 字典一样），而不是笨重的 XML。
     无状态：服务器不记你的“登录状态”，每次请求都必须带上你的“通行证”。
+    REST API 是“同步”的：你发一个请求，Python 程序就得在那儿等着，直到 Salesforce 说“存好了”，程序才继续下一行。
+6. 关于Bulk API
+- 它是为了处理**大数据量（Big Data）**设计的。它把 10,000 条甚至更多数据打包成一个 Batch（批次）。无论这批数据有多少条，在计算额度时都非常节省。
+- Bulk API 的工作原理：异步处理
+- Bulk API 的局限性：
+    实时性要求高：如果你需要立刻拿到刚生成的 ID 去做下一步操作，Bulk API 的异步特性会让你等得很心急。
+    复杂的逻辑验证：Bulk 适合纯粹的数据搬运。如果你每一行都要做极其复杂的逻辑判断，在大批量执行时可能会触发 Salesforce 后台的“触发器（Trigger）”限制。
+7. Data Loader
+- Data Loader 是一个调用了 Bulk API 的“客户端工具”。
+- 主要功能：
+    易于使用的向导式界面，方便交互式使用
+    用于自动化批处理操作的替代命令行界面（仅限 Windows）
+    与 Bulk API 2.0 一起使用时，支持包含多达 1.5 亿条记录的大型文件。
+    拖放式字段映射
+    支持所有对象，包括自定义对象
+    在 Salesforce 和 Database.com 中处理数据
+    详细的成功和错误日志文件（CSV 格式）
+    内置 CSV 文件查看器
+- 如果打开 Data Loader 的设置（Settings），你会看到一个选项叫 "Use Bulk API"。如果不勾选：Data Loader 会使用 REST/SOAP API，一条一条（或小批量 200 条）地发送数据。如果勾选：Data Loader 就会切换到 Bulk API 模式，把你的 CSV 文件切分成大块（Batches）上传，速度极大提升。
+- 适合使用data loader的情况：
+    数据加载器支持最多包含 1.5 亿条记录的 CSV 文件。如果您需要加载超过 1.5 亿条记录，我们建议您联系 Salesforce 合作伙伴或访问AppExchange寻找合适的合作伙伴产品。
+    您必须将数据加载到数据导入向导尚不支持的对象中。
+    您的数据包含复杂的字段映射，您必须定期持续加载这些数据。
+    您希望安排定期数据加载，例如每晚导入数据。
+    您想导出数据以进行备份。
+8. Salesforce Cli
+- CLI 的全称是 Command Line Interface（命令行界面）。是一个安装在电脑上的软件。安装后，你在终端（Terminal 或 PowerShell）里输入命令就能操控 Salesforce。
+- 安装方法：通过官网下载安装包，或者用 Node.js 的 npm install -g @salesforce/cli 安装。
+- 常用场景：
+    自动化脚本：在你的 Python 脚本运行前后，用 CLI 快速清理环境。
+    CI/CD：在 GitHub Actions 里自动把代码部署到 Salesforce。
+    快速查询：不想打开浏览器时，直接在终端敲一行命令看数据。
+9. Data Import Wizard
 
 ## Problems
 1. vpn问题/网络/SSL 握手拦截 问题。这个 SSL_ERROR_SYSCALL 通常是因为你的本地 Git 客户端在通过 HTTPS 协议连接 GitHub 时，被系统代理、防火墙或不稳定的 VPN 节点强行中断了连接。
