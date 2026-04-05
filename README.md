@@ -132,5 +132,19 @@
 
 ## Problems
 1. vpn问题/网络/SSL 握手拦截 问题。这个 SSL_ERROR_SYSCALL 通常是因为你的本地 Git 客户端在通过 HTTPS 协议连接 GitHub 时，被系统代理、防火墙或不稳定的 VPN 节点强行中断了连接。
-    - git config --global --unset http.proxy
-    - git config --global --unset https.proxy
+- 解决方案 1：
+    1. 查看当前代理：在终端中运行以下命令，检查是否设置了代理：
+    git config --global --get http.proxy
+    git config --global --get https.proxy
+    2. 取消代理：如果上述命令有输出，则运行以下命令清除代理设置：
+    git config --global --unset http.proxy
+    git config --global --unset https.proxy
+    3. 重试 Git 命令：取消后，再次执行 git clone 或 git pull，看问题是否解决。
+- 解决方案 2:
+    1. 如果你使用 HTTP/HTTPS 代理
+    git config --global http.proxy http://127.0.0.1:端口号
+    git config --global https.proxy http://127.0.0.1:端口号
+
+    2. 如果你使用 SOCKS5 代理（例如某些 VPN 模式）
+    git config --global http.proxy socks5://127.0.0.1:端口号
+    git config --global https.proxy socks5://127.0.0.1:端口号
