@@ -5,10 +5,10 @@
 - 第一步：连通salesforce -- Done
 - 第二步：创建测试数据 -- Done
 - 第三步：尝试Query（select），主要用途是data validation -- Done
-- 第四步：尝试批量edit/delete/update -- Done
+- 第四步：批量edit/delete/update -- Done
 - 第四步：搭建lwc组件
-- 第五步：尝试playwright模拟真实用户操作ui页面
-- 第六步：尝试自动化验证 salesforce 配置
+- 第五步：用playwright模拟真实用户操作ui页面 -- Done
+- 第六步：自动化验证 salesforce 后端逻辑&配置 (Anonymous Apex + SOQL)
 - API 部分：通过 Python 的 requests 调用 Salesforce REST API 快速创建测试数据。
 - UI 部分：使用 Playwright 登录 Trailhead Playground 验证数据是否在页面显示。
 - BDD 部分：使用自然语言描述测试步骤。
