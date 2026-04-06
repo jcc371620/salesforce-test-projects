@@ -1,0 +1,98 @@
+```mermaid
+flowchart LR
+    START((START<br/>业务起点)) --> S1_Title
+
+    %% ==================== Step 1 ====================
+    subgraph S1["⭐ Step 1: Consumer Goods Cloud<br/>巡店执行 - 发现缺货"]
+        direction TB
+        S1_Route["<b>Route 拜访路线</b><br/>━━━━━━<br/>Route_ID / 路线ID<br/>Route Name / 路线名<br/>Sales Rep / 业务员"]
+        S1_Visit["<b>Visit 巡店记录</b><br/>━━━━━━<br/>Visit_ID / 记录ID<br/>Shortage / 缺货量<br/>Competitor / 竞品占比"]
+        S1_Activity["<b>Activity 任务清单</b><br/>━━━━━━<br/>Completion / 完成率"]
+        S1_Store["<b>Retail Store 门店</b><br/>━━━━━━<br/>Store_ID / 门店ID<br/>Traffic / 日均客流"]
+        
+        S1_Route --> S1_Visit --> S1_Activity
+        S1_Visit --> S1_Store
+    end
+
+    S1 --> S2_Title
+
+    %% ==================== Step 2 ====================
+    subgraph S2["⭐ Step 2: Sales Cloud<br/>销售合同 - 谈判补货"]
+        direction TB
+        S2_Account["<b>Account 客户</b><br/>━━━━━━<br/>AnnualSpend / 年采购额<br/>CreditLimit / 信用额度"]
+        S2_Opp["<b>Opportunity 商机</b><br/>━━━━━━<br/>Amount / 金额<br/>WinRate / 赢单率"]
+        S2_Quote["<b>Quote 报价单</b><br/>━━━━━━<br/>Discount / 折扣<br/>NetPrice / 折后价"]
+        S2_Contract["<b>Contract 合同</b><br/>━━━━━━<br/>AnnualQty / 年约定量"]
+        S2_PriceBook["<b>PriceBook2 价目表</b><br/>━━━━━━<br/>StdPrice / 标准价<br/>ContractPrice / 协议价"]
+        
+        S2_Account --> S2_Opp --> S2_Quote --> S2_Contract --> S2_PriceBook
+    end
+
+    S2 --> S3_Title
+
+    %% ==================== Step 3 ====================
+    subgraph S3["⭐ Step 3: Commerce Cloud<br/>门店下单 - 自助补货"]
+        direction TB
+        S3_WebStore["<b>WebStore B2B商店</b><br/>━━━━━━<br/>Login / 登录方式<br/>Payment / 支付方式"]
+        S3_WebCart["<b>WebCart 购物车</b><br/>━━━━━━<br/>Items / 商品明细<br/>Total / 总额"]
+        S3_Order["<b>Order 订单</b><br/>━━━━━━<br/>Status / 状态<br/>TrackingNo / 运单号"]
+        
+        S3_WebStore --> S3_WebCart --> S3_Order
+    end
+
+    S3 --> S4_Title
+
+    %% ==================== Step 4 ====================
+    subgraph S4["⭐ Step 4: Marketing Cloud<br/>消费者营销 - 拉动动销"]
+        direction TB
+        S4_Campaign["<b>Campaign 促销活动</b><br/>━━━━━━<br/>Budget / 预算<br/>Conversion / 转化率"]
+        S4_Journey["<b>Journey 消费者旅程</b><br/>━━━━━━<br/>Entered / 进入人数<br/>DropRate / 流失率"]
+        S4_Audience["<b>Audience 人群细分</b><br/>━━━━━━<br/>Criteria / 条件<br/>Strategy / 策略"]
+        
+        S4_Campaign --> S4_Journey --> S4_Audience
+    end
+
+    S4 --> S5_Title
+
+    %% ==================== Step 5 ====================
+    subgraph S5["⭐ Step 5: Service Cloud<br/>售后服务 - 问题闭环"]
+        direction TB
+        S5_Case["<b>Case 服务请求</b><br/>━━━━━━<br/>Priority / 优先级<br/>SLA / 响应时效"]
+        S5_WorkOrder["<b>WorkOrder 工单</b><br/>━━━━━━<br/>Fault / 故障描述"]
+        S5_Asset["<b>Asset 设备资产</b><br/>━━━━━━<br/>SerialNo / 序列号<br/>Warranty / 维保到期"]
+        S5_Knowledge["<b>Knowledge 知识库</b><br/>━━━━━━<br/>Views / 浏览量"]
+        
+        S5_Case --> S5_Knowledge
+        S5_WorkOrder --> S5_Asset
+    end
+
+    S5 --> LoopBack
+
+    %% ==================== 循环与结束 ====================
+    LoopBack["🔄 数据反哺闭环 🔄<br/>━━━━━━━━━━━━━━━━━━<br/>缺货Case → 新商机<br/>维修工单 → 优化巡店<br/>投诉Case → 优化活动"]
+    
+    END((END<br/>业务闭环))
+
+    LoopBack --> START
+    LoopBack -.-> END
+
+%% 跨步骤数据流（虚线）
+    S1_Store -.-> S2_Account
+    S2_PriceBook -.-> S3_WebCart
+    S2_Contract -.-> S3_WebStore
+    S4_Campaign -.-> S1_Store
+    S3_Order -.-> S5_WorkOrder
+    S4_Campaign -.-> S5_Case
+
+%% Salesforce 配色
+    style START fill:#00A1E0,stroke:#0077B3,color:white
+    style END fill:#00A1E0,stroke:#0077B3,color:white
+    style LoopBack fill:#F39C12,stroke:#E67E22,color:white
+    
+    style S1 fill:#7C4DFF,stroke:#6B3FE0,color:white
+    style S2 fill:#00A1E0,stroke:#0077B3,color:white
+    style S3 fill:#1C9C8A,stroke:#157A6B,color:white
+    style S4 fill:#F88962,stroke:#E0673D,color:white
+    style S5 fill:#2C6E9E,stroke:#1F5480,color:white
+
+```
